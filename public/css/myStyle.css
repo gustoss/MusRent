@@ -1,0 +1,223 @@
+body
+{ 
+    padding-top: 70px;
+    padding-bottom: 55px;
+
+    border-radius: 0 !important;
+}
+
+/* Local onde fica o musrent */
+.logo
+{
+    background-color: #337ab7;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Deixar os well com a borda em 90º */
+.well
+{
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+
+    border-bottom-width: 3px;
+    border-bottom-color: #cfc3d8;
+
+    border-top-width: 3px;
+    border-top-color: #cfc3d8;
+
+    background-color: #efebf2;
+}
+
+/* Ajustar os form-control */
+.form-control
+{
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+/* Ajustar o divisor */
+.divisor
+{
+    margin-top: 3px;
+    margin-bottom: 3px;
+
+    height: 2px;
+
+    background-color: #cfc3d8;
+}
+
+/* Ajustar o panel */
+.panel
+{
+    margin-right: 0;
+
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+/* Ajustar o corpo do .panel acima */
+.panel-body
+{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+/* Ajustar o cabeçalho do panel acima */
+.panel-heading
+{
+    background-color: #fff !important;
+    font-weight: 700;
+}
+
+/* Ajustar o btn */
+.btn
+{
+    border-radius: 0;
+}
+
+.btn:hover
+{
+    background-color: #337ab7;
+    color: #ffffff;
+}
+
+/* Botão de remover adicionar */
+.btn-remove
+{
+    border-radius: 30px;
+    background-color: #fff;
+
+    border-width: 1px;
+    border-color: #ccc;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    padding-bottom: 1px;
+    padding-top: 2px;
+}
+
+.btn-remove:hover
+{
+    background-color: #f33;
+    border-color: #555;
+}
+
+/*  Botão de help */
+.btn-help
+{
+    border-radius: 30px;
+    background-color: #fff;
+
+    border-width: 1px;
+    border-color: #ccc;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    padding-bottom: 1px;
+    padding-top: 2px;
+}
+
+/* Ajustar o div de help */
+.well-help
+{
+    background-color: #fff;
+    
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    font-size: 15px;
+}
+
+span.well-help
+{
+    font-size: 50px;
+}
+
+/* Checkbox */
+.btn-check
+{
+    width: 13px;
+    height: 13px;
+
+    border-radius: 0;
+}
+
+/*-----------------------------------------------------------------------------------------------------*/
+.space-margin
+{
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.space-top
+{
+    margin-top: 25px;
+}
+
+.nav-color
+{
+    background-color: #ffffff;
+    box-shadow: 0px 1px 8px #8f8f8f;
+}
+
+.nav-btn-color
+{
+    color: #D0D0D0 !important;
+    cursor: pointer;
+}
+
+.nav-btn-color:hover
+{
+    background: #000000 !important;
+}
+
+.color-link
+{
+    color: #000000;
+}
+
+.color-link:hover
+{
+    background-color: #337ab7 !important;
+    border-left: 1px solid#ffffff;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.height-bar
+{
+    height: 30px;
+    margin-top: 1px; 
+}
+
+.header-bar
+{
+    background-color: #e6e6ff !important;
+    border-radius: 0px !important;
+}
+
+.link-header-bar
+{
+    color: #000000;
+    cursor: pointer;
+}
+
+.panel-heading-bar
+{
+    border-radius: 0px !important;
+}
+
+.input-control
+{
+    border-radius: 0px !important;
+}

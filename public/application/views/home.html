@@ -1,0 +1,40 @@
+<div class="panel panel-default panel-heading-bar" ng-repeat="group in groups">
+    <div class="panel-heading panel-heading-bar">
+        <label>{{group.name}} - {{group.type}}</label>
+        <a href="" ng-click="goGroup(group._id)" class="pull-right link-header-bar">
+            Conhecer mais 
+            <span class="glyphicon glyphicon-arrow-right"></span>
+        </a>
+    </div>
+
+    <div class="panel-body">
+        <div>
+            <p><label>Eventos onde {{group.name}} toca</label></p>
+            <p ng-repeat="play in group.wherePlay"><label>{{play.place}}</label></p>
+        </div>
+        <hr class="divisor">
+        <div>
+            <label>Cidades onde {{group.name}} toca</label>
+            <p ng-repeat="place in group.place"><label>{{place.city}}</label></p>
+        </div>
+        <hr class="divisor">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Pacote</th>
+                        <th>Músicas fornecida</th>
+                        <th>Músicas do cliente</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="package in group.packages">
+                        <td>{{$index + 1}}</td>
+                        <td>{{package.musics.length}}</td>
+                        <td>{{package.amount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

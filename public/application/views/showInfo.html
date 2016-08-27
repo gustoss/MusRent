@@ -1,0 +1,53 @@
+<div class="well well-sm">
+    <p><label>{{group.name}} - {{group.type}}</label></p>
+    <p><label>Telefone: {{group.phone}}</label></p>
+    <p><label>E-Mail: {{group.email}}</label></p>
+    <hr class="divisor">
+    <div>
+        <label>Eventos onde {{group.name}} toca</label>
+        <div ng-repeat="play in group.wherePlay">
+            <label>{{play.place}}</label>
+        </div>
+    </div>
+    <hr class="divisor">
+    <div>
+        <label>Cidades onde {{group.name}} toca</label>
+        <div ng-repeat="place in group.place">
+            <label>{{place.city}}</label>
+        </div>
+    </div>
+</div>
+
+<div class="well well-sm"  ng-repeat="package in group.packages">
+    <div>
+        <label>Pacote {{($index + 1)}}</label><p/>
+        <label>Quantidade de música a escolha do cliente: {{package.amount}}</label>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Músicas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="music in package.musics">
+                <td>{{music.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div ng-repeat="person in group.groupData" class="well well-sm">
+    <div class="form-group">
+        <label>Músico {{person.name}}</label>
+    </div>
+    <div class="form-group">
+        <label for="instrumento">Instrumeto: {{person.instrument}}</label>
+    </div>
+    <div class="form-group">
+        <label>Descrição do músico:</label><p/>
+        <label>{{person.description}}</label> 
+    </div>
+</div>
+
+<button ng-click="goHome()" class="btn btn-default"></button>
