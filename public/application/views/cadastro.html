@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="formDescription">Descrição do Grupo</label>
+                    <label class="control-label" for="formDescription">Descrição do Grupo [opcional]</label>
                     <textarea ng-model="infoGroup.description" type="text" placeholder="Descrição do grupo" class="form-control" id="formDescription"
                         name="formDescription"></textarea>
                 </div>
@@ -22,17 +22,6 @@
                 <div class="form-group">
                     <div>
                         <label>Telefone do Grupo</label>
-                        <!--Botão para mostar a uma dica para o usuário, botão de telefone-->
-                        <button type="button" class="btn btn-help" ng-click="helpPhone = !helpPhone">
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </button>
-                    </div>
-                    <!--A dica que será mostrar para o usuária, dica de telefone-->
-                    <div uib-collapse="helpPhone">
-                        <div class="well well-lg well-help text-center">
-                            <span class="glyphicon glyphicon-info-sign"></span> Insira um o nome e o telefone para facilitar
-                            o contato do cliente com o músico ou grupo.
-                        </div>
                     </div>
                     <!--Cria um bloco para colocar o nome e o telefone-->
                     <div class="panel panel-default" ng-repeat="phone in infoGroup.phones">
@@ -42,7 +31,7 @@
                             <div class="pull-right">
                                 <!--Botão para remover o contato atual, bloco de telefone-->
                                 <button type="button" class="btn btn-remove" ng-click="removePhone($index)">
-                                    <span class="glyphicon glyphicon-remove" uib-tooltip="Clique aqui para remover esse contato." 
+                                    <span class="glyphicon glyphicon-remove" uib-tooltip="Remover esse contato de telefone." 
                                           tooltip-placement="top" tooltip-trigger="mouseenter"></span>
                                 </button>
                             </div>
@@ -63,14 +52,14 @@
                                 <label class="col-sm-1 control-label" for="formPhone{{$index}}">Telefone</label>
                                 <div class="col-sm-11">
                                     <input id="formPhone{{$index}}" name="formPhone{{$index}}" type="tel" class="form-control" ui-mask-placeholder ng-model="phone.number"
-                                        ui-mask="(99) 9999-9999?9" required="required">
+                                        ui-mask="(99) ?99999-9999" required="required">
                                     <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formGroup.formPhone{{$index}}.$invalid && !formGroup.formPhone{{$index}}.$pristine"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--Botão para adicionar mais telefone a lista de telefone-->
-                    <button type="button" class="btn btn-default" ng-click="addPhone()" uib-tooltip="Clique aqui para adicionar mais telefone para contato."
+                    <button type="button" class="btn btn-default" ng-click="addPhone()" uib-tooltip="Adicionar mais um contato de telefone."
                         tooltip-placement="top" tooltip-trigger="mouseenter">
                         <span class="glyphicon glyphicon-plus"></span>
                         Adicionar telefone
@@ -81,17 +70,6 @@
                 <div class="form-group">
                     <div>
                         <label>E-Mail do Grupo</label>
-                        <!--Botão para mostar a uma dica para o usuário, botão de email-->
-                        <button type="button" class="btn btn-help" ng-click="helpEmail = !helpEmail">
-                            <span class="glyphicon glyphicon-question-sign"></span>
-                        </button>
-                    </div>
-                    <!--A dica que será mostrar para o usuária, dica de email-->
-                    <div uib-collapse="helpEmail">
-                        <div class="well well-lg well-help text-center">
-                            <span class="glyphicon glyphicon-info-sign"></span> Insira um o nome e o e-mail para facilitar
-                            o contato do cliente com o músico ou grupo.
-                        </div>
                     </div>
                     <!--Cria um bloco para colocar um nome e um email-->
                     <div class="panel panel-default" ng-repeat="email in infoGroup.emails">
@@ -100,10 +78,8 @@
                             <label>E-Mail</label>
                             <!--Botão para remover o contato atual, bloco de email-->
                             <button type="button" class="btn btn-remove pull-right" ng-click="removeEmail($index)">
-                                <span class="glyphicon glyphicon-remove" 
-                                      uib-tooltip="Clique aqui para remover esse contato." 
-                                      tooltip-placement="top" 
-                                      tooltip-trigger="mouseenter"></span>
+                                <span class="glyphicon glyphicon-remove" uib-tooltip="Remover esse contato de E-Mail." 
+                                      tooltip-placement="top" tooltip-trigger="mouseenter"></span>
                             </button>
                         </div>
                         <!--Corpo do bloco-->
@@ -128,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-default" ng-click="addEmail()" uib-tooltip="Clique aqui para adicionar mais e-mail para contato."
+                    <button type="button" class="btn btn-default" ng-click="addEmail()" uib-tooltip="Adicionar mais um contato de E-Mail."
                         tooltip-placement="top" tooltip-trigger="mouseenter">
                         <span class="glyphicon glyphicon-plus"></span>
                         Adicionar e-mail
@@ -167,7 +143,7 @@
                 <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="6500">{{alert.msg}}</uib-alert>
                 <!--Botão para adicionar mais cidades-->
                 <div>
-                    <button type="button" class="btn btn-default" ng-click="addPlace()" uib-tooltip="Clique para adicionar a cidade seleciona a lista abaixo.">
+                    <button type="button" class="btn btn-default" ng-click="addPlace()" uib-tooltip="Adicionar a cidade seleciona a lista.">
                         <span class="glyphicon glyphicon-plus"></span>
                         Adicionar cidade
                     </button>
@@ -183,9 +159,9 @@
                 </thead>
                 <!--Faz a repetição para exibir as cidades que foi adicionada a cima-->
                 <tbody>
-                    <tr ng-repeat="p in infoGroup.place">
-                        <td><button class="btn btn-remove" ng-click="removeCity($index)" uib-tooltip="Clique aqui para remover essa cidade."
-                                tooltip-placement="top" tooltip-trigger="mouseenter">
+                    <tr ng-repeat="p in infoGroup.places">
+                        <td><button class="btn btn-remove" ng-click="removeCity($index)" uib-tooltip="Remover esta cidade."
+                                tooltip-placement="top" tooltip-trigger="mouseenter" type="button">
                                 <span class="glyphicon glyphicon-remove"></span>
                             </button>
                         </td>
@@ -196,7 +172,7 @@
             </table>
 
             <div>
-                <button class="pull-right btn btn-default" type="submit" uib-tooltip="Preencha todo os campo corretamente." tooltip-placement="top"
+                <button class="pull-right btn btn-default" type="submit" uib-tooltip="Preencha todo os campos corretamente." tooltip-placement="top"
                     tooltip-trigger="mouseenter" tooltip-enable="formGroup.$invalid">
                     Próximo
                     <span class="glyphicon glyphicon-arrow-right"></span>
@@ -211,12 +187,13 @@
         <form name="formInt" ng-submit="next(formInt.$valid)" novalidate="novalidate">
             <div class="well well-sm">
                 <!--Listar os integrates já adicionados a lista-->
-                <div ng-repeat="person in infoGroup.groupData" class="panel panel-default">
+                <div ng-repeat="person in infoGroup.members" class="panel panel-default">
                     <!--Cabeçalho do bloco-->
                     <div class="panel-heading">
                         <label>Músico {{$index + 1}}</label>
-                        <button class="btn btn-remove pull-right" ng-click="removeIntegrant($index)" uib-tooltip="Clique aqui para remover essa cidade."
-                            tooltip-placement="top" tooltip-trigger="mouseenter">
+                        <!--Botão para remover um integrante-->
+                        <button class="btn btn-remove pull-right" ng-click="removeIntegrant($index)" uib-tooltip="Remover esse integrante do grupo."
+                            tooltip-placement="top" tooltip-trigger="mouseenter" type="button">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
                     </div>
@@ -242,7 +219,7 @@
                         </div>
                         <!--Campo de descrição-->
                         <div class="form-group">
-                            <label class="col-sm-1 control-label" for="formDes{{$index}}">Descrição</label>
+                            <label class="col-sm-1 control-label" for="formDes{{$index}}">Descrição [opcional]</label>
                             <div class="col-sm-11">
                                 <textarea id="formDes{{$index}}" name="formDes{{$index}}" type="text" class="form-control" placeholder="Descrição" ng-model="person.description"></textarea>
                             </div>
@@ -252,8 +229,8 @@
 
                 <!--Botão para adicionar mais integrantes-->
                 <div>
-                    <button class="btn btn-default" uib-tooltip="Clique aqui para adicionar mais integrantes ao grupo." tooltip-placement="top"
-                        tooltip-trigger="mouseenter" tooltip-enable="formGroup.$invalid" ng-click="addIntegrant()">
+                    <button class="btn btn-default" uib-tooltip="Adicionar mais um integrante ao grupo." tooltip-placement="top"
+                        tooltip-trigger="mouseenter" tooltip-enable="formGroup.$invalid" ng-click="addIntegrant()" type="button">
                         <span class="glyphicon glyphicon-plus"></span>
                         Adicionar integrante
                     </button>
@@ -278,34 +255,43 @@
     <!-- Informações sobre os pacotes do grupo -->
     <uib-tab index="3" heading="Login" disable="true">
         <form ng-submit="finish(formLogin.$invalid)" name="formLogin">
-            <!--Campo e validação de usuário-->
-            <div class="form-group has-feedback" ng-class="{'has-error': formLogin.username.$invalid && !formLogin.username.$pristine}">
-                <label class="control-label" for="username">Usuário</label>
-                <input id="username" name="username" type="text" class="form-control" placeholder="Usuário" ng-model="user.username" required="required"
-                    ng-change="checkUser()">
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formLogin.username.$invalid && !formLogin.username.$pristine"></span>
-                <span class="glyphicon glyphicon-remove" ng-show="validUser">Esse usuário já existe!</span>
-            </div>
+            <div class="well well-sm">
+                <!--Campo e validação de usuário-->
+                <div class="form-group has-feedback" ng-class="{'has-error': formLogin.username.$invalid && !formLogin.username.$pristine}">
+                    <label class="control-label" for="username">Usuário [mínimo 6]</label>
+                    <input id="username" name="username" type="text" class="form-control" placeholder="Usuário" ng-model="user.username" required="required"
+                        ng-change="checkUser()" ng-minlength="6">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formLogin.username.$invalid && !formLogin.username.$pristine"></span>
+                    <span class="glyphicon glyphicon-remove" ng-show="validUser">Esse usuário já existe!</span>
+                </div>
 
-            <div class="form-group has-feedback" ng-class="{'has-error': formLogin.password.$invalid && !formLogin.password.$pristine}">
-                <label class="control-label" for="password">Senha</label>
-                <input id="password" name="password" type="text" class="form-control" placeholder="Senha" ng-model="user.password" required="required">
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formLogin.password.$invalid && !formLogin.password.$pristine"></span>
-            </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': formLogin.password.$invalid && !formLogin.password.$pristine}">
+                    <label class="control-label" for="password">Senha <span 6="mínimo"></span></label>
+                    <input id="password" name="password" type="password" class="form-control" placeholder="Senha" ng-model="user.password" required="required"
+                        ng-minlength="6">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formLogin.password.$invalid && !formLogin.password.$pristine"></span>
+                </div>
 
-            <div class="form-group has-feedback" ng-class="{'has-error': formLogin.passC.$invalid && !formLogin.passC.$pristine}">
-                <label class="control-label" for="passC">Senha</label>
-                <input id="passC" name="passC" type="text" class="form-control" placeholder="Senha" required="required"
-                    ng-change="checkPassword()" ng-model="passwordC">
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="formLogin.passC.$invalid && !formLogin.passC.$pristine"></span>
-                <span class="glyphicon glyphicon-remove" ng-show="validPassword && !formLogin.passC.$pristine">Senhas diferentes!</span>
+                <div class="form-group has-feedback" ng-class="{'has-error': (formLogin.passC.$invalid || !validPassword) && !formLogin.passC.$pristine}">
+                    <label class="control-label" for="passC">Confirmação de senha</label>
+                    <input id="passC" name="passC" type="password" class="form-control" placeholder="Confirmação" required="required" ng-change="checkPassword()"
+                        ng-model="passwordC.pass">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="(formLogin.passC.$invalid || !validPassword) && !formLogin.passC.$pristine"></span>
+                    <span class="glyphicon glyphicon-remove" ng-show="(formLogin.passC.$invalid || !validPassword) && !formLogin.passC.$pristine">
+                        <label class="control-label"> Senhas diferentes!</label>
+                    </span>
+                </div>
             </div>
-
-            <button class="pull-right btn btn-default" type="submit">Finalizar</button>
+            <div>
+                <button class="pull-left btn btn-default" ng-click="back()" type="button">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                    Voltar
+                </button>
+                <button class="pull-right btn btn-default" type="submit">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    Finalizar
+                </button>
+            </div>
         </form>
-
-        <div>
-            <button class="pull-left btn btn-default" ng-click="back()">Voltar</button>
-        </div>
     </uib-tab>
 </uib-tabset>

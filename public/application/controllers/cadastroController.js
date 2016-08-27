@@ -1,4 +1,4 @@
-app.controller("cadastroController", function ($scope, $rootScope, $location, groupService) {
+app.controller("cadastroController", function ($scope, $rootScope, $location, datasAPI, groupAPI) {
     //Definir o titulo da página atual
     $rootScope.title = "Cadastro de grupo";
     $rootScope.description = "Faça o cadastro do grupo de músico no MusRest";
@@ -8,89 +8,67 @@ app.controller("cadastroController", function ($scope, $rootScope, $location, gr
     $scope.validUser = false;
 
     //Para ter o controle de qual tab está selecionada
-    var currentTab = 3;
+    var currentTab = 1;
     $scope.active = currentTab;
 
     //Model para as informações do grupo
     $scope.infoGroup = {};
-    $scope.infoGroup.groupData = [{}];
+    $scope.infoGroup.members = [{}];
     $scope.infoGroup.wherePlay = [];
-    $scope.infoGroup.phones = [{number: "", name: ""}];
-    $scope.infoGroup.emails = [{email: "", name: ""}]
+    $scope.infoGroup.phones = [{}];
+    $scope.infoGroup.emails = [{}]
     $scope.user = {};
 
     //Model dos estados e cidades selecionado
-    $scope.infoGroup.place = [];
+    $scope.infoGroup.places = [];
     $scope.placeSelected = {};
 
     //Model para os pacotes com músicas
     $scope.infoGroup.packages = [/*{musics:[{name: ""}]}*/];
 
     //Verificar o password
-    $scope.passwordC = "asd";
+    $scope.passwordC = {pass: ""};
 
-    //if Para verificar se está na tela de cadastro ou na tela de editar
-    if($location.path().startsWith("/edit"))
-    {
-        $scope.active = currentTab;
-        $rootScope.description = "Carregando...";
-        groupService.getGroup($rootScope.user.id, $rootScope.user.token)
-        .success(function (group) {
-            var where = [];
-            for(var index = 0; index < group.wherePlay.length; index++)
-                where.push({id:group.wherePlay[index].id, place:group.wherePlay[index].place});
-            $scope.infoGroup = group;
-            $scope.infoGroup.wherePlay = where;
-            console.log(group.wherePlay);
-            console.log($scope.infoGroup.wherePlay);
-            $rootScope.description = "Bem-vindo " + $scope.infoGroup.name;
-        })
-        .error(function (error) {
-            $location.path("/home");
-        });
-        //Função de callBack para teste
-        $scope.finish = function () {
-            groupService.update($scope.infoGroup, $rootScope.user.id, $rootScope.user.token)
-            .success(function () {
-                $rootScope.open("Atualização", "O " + $scope.infoGroup.name + " foi atualizado com sucesso.", true);
-            })
-            .error(function () {
-                $location.path("/home");
-            });
-        };
-    }
-    else
-    {
-        //Função para cadastrar um grupo
-        $scope.finish = function () {
-            console.log($scope.infoGroup);
-
-            /*groupService.saveGroup($scope.infoGroup, $scope.user)
-            .success(function () {
+    //Função para cadastrar um grupo
+    $scope.finish = function () {
+        if(!$scope.validUser){
+            groupAPI.saveGroup($scope.infoGroup, $scope.user)
+            .success(function (suc) {
                 $location.path("/home");
             })
             .error(function () {
                 
-            });*/
-        };
-    }
+            });
+        }
+    };
 
     //Verifica se o usuário já existe
     $scope.checkUser = function () {
-        //------------------------------------------------------------Bater no serviço e pegar o usuário e comparar
+        groupAPI.checkUser($scope.user.username)
+        .success(function (valid) {
+            $scope.validUser = valid;
+        })
+        .error(function (err) {
+            
+        });
     }
 
     $scope.checkPassword = function () {
-        console.log($scope.passwordC);
-        $scope.validPassword = $scope.user.password == $scope.passwordC;
+        $scope.validPassword = $scope.user.password == $scope.passwordC.pass;
     }
 
     //Model para colocar na tela todas as opções de onde gostaria de tocar
-    //Pegar do service
-    $scope.wherePlay = []//----------------------------------------------Bater no serviço e pegar os locais onde prefere tocar
+    $scope.wherePlay = []
+    datasAPI.getWherePlay()
+    .success(function (where) {
+        $scope.wherePlay = where;
+    })
+    .error(function (err) {
+        
+    });
 
     //Model de todo os estados
-    groupService.getEstate()
+    datasAPI.getEstate()
     .success(function (estado) {
         $scope.getEstate = estado;
     })
@@ -98,7 +76,7 @@ app.controller("cadastroController", function ($scope, $rootScope, $location, gr
         
     });
 
-    groupService.getCity(0)
+    datasAPI.getCity(0)
     .success(function (city) {
         $scope.getCity = city;
     })
@@ -113,7 +91,8 @@ app.controller("cadastroController", function ($scope, $rootScope, $location, gr
 
     //Função para adicionar telefones do grupo
     $scope.removePhone = function (index) {
-        $scope.infoGroup.phones.splice(index, 1);
+        if($scope.infoGroup.phones.length > 1)
+            $scope.infoGroup.phones.splice(index, 1);
     }
 
     //Função para adicinar telefones
@@ -123,7 +102,8 @@ app.controller("cadastroController", function ($scope, $rootScope, $location, gr
 
     //Função para adicionar e-mail do grupo
     $scope.removeEmail = function (index) {
-        $scope.infoGroup.emails.splice(index, 1);
+        if($scope.infoGroup.emails.length > 1)
+            $scope.infoGroup.emails.splice(index, 1);
     }
 
     //Função para adicionar os locais selecionado na lista de locais que o grupo toda
@@ -132,29 +112,30 @@ app.controller("cadastroController", function ($scope, $rootScope, $location, gr
             $scope.alerts.push({ type: "warning", msg: "Selecione um Estado e uma Cidade"})
         else
         {
-            $scope.infoGroup.place.push(JSON.parse(JSON.stringify($scope.placeSelected)));
+            $scope.infoGroup.places.push(JSON.parse(JSON.stringify($scope.placeSelected)));
         }    
     }
 
     //Função para remover os locais selecionado da lista
     $scope.removeCity = function (index) {
-        $scope.infoGroup.place.splice(index, 1);
+        $scope.infoGroup.places.splice(index, 1);
     }
 
     //Função para adicionar mais integrantes
     $scope.addIntegrant = function () {
-        $scope.infoGroup.groupData.push({});
+        $scope.infoGroup.members.push({});
     }
 
     //Função para remover um integrantes
     $scope.removeIntegrant = function (index) {
-        $scope.infoGroup.groupData.splice(index, 1);
+        if($scope.infoGroup.members.length > 1)
+            $scope.infoGroup.members.splice(index, 1);
     }
 
     //Função para buscar as cidades de um estado selecionado
     $scope.sele = function () {
         $scope.disabledCity = true;
-        groupService.getCity($scope.placeSelected.estate.id)
+        datasAPI.getCity($scope.placeSelected.estate.id)
         .success(function (city) {
             $scope.getCity = city;
             $scope.disabledCity = false;

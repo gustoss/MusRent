@@ -1,3 +1,6 @@
+/**
+ * Área de uso do site, onde manda páginas e icones
+ */
 module.exports = function (app) {
 	var controller = {
 		getHome: function(request, response){
@@ -6,6 +9,6 @@ module.exports = function (app) {
 		getFavicon: function (request, response) {
 			response.end();
 		}
-	};
+	}
 	return controller;
 }

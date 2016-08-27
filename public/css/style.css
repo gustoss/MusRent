@@ -3,6 +3,19 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.block
+{
+  margin-left: 5px;
+  margin-right: 5px;
+
+  border-bottom-width: 2px;
+
+  border-top-width: 2px;
+
+  border-color: #000000;
+}
+
+.block-heading
+{
+  border-bottom-width: 1px;
 }

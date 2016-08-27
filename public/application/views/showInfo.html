@@ -1,15 +1,22 @@
 <div class="well well-sm">
-    <p><label>{{group.name}} - {{group.type}}</label></p>
-    <p><label>Telefone: {{group.phone}}</label></p>
+    <div class="panel panel-default panel-heading-bar" ng-if="group.phones.length > 0">
+        <div class="panel-heading panel-heading-bar">
+            <label ng-if="group.phones.length == 1">Telefone para contado</label>
+            <label ng-if="group.phones.length > 1">Telefones para contado</label>
+        </div>
+        <div class="panel-body">
+            <p ng-repeat="phone in group.phones">
+                <label ui-mask="(99) 9999-9999?9">{{phone.number}}</label> falar com {{phone.name}}
+            </p>
+        </div>
+    </div>
     <p><label>E-Mail: {{group.email}}</label></p>
-    <hr class="divisor">
     <div>
-        <label>Eventos onde {{group.name}} toca</label>
+        <label>Preferências de eventos de {{group.name}}</label>
         <div ng-repeat="play in group.wherePlay">
             <label>{{play.place}}</label>
         </div>
     </div>
-    <hr class="divisor">
     <div>
         <label>Cidades onde {{group.name}} toca</label>
         <div ng-repeat="place in group.place">

@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-2 well well-sm ">
+        <ul class="pack">
+            <li ng-repeat="p in infoGroup.packages">
+                <a href="" ng-click="changePackage($index)" ng-class="{'btn-focus': ($index == currentPackage)}">
+                    {{p.name}}
+                </a>
+            </li>
+            <li>
+                <a href="" ng-click="addPackage()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Adicionar Pacote
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-10 well well-sm" ng-show="infoGroup.packages.length == 0">
+        <h2>
+            Adicione um pacote e edite aqui.
+            <div class="rotate90">:)</div>
+        </h2>
+    </div>
+    <div class="col-md-10 well well-sm" ng-show="infoGroup.packages.length > 0">
+        <h3 ng-if="!editNamePackage">
+            {{package.name}}
+            <button class="btn btn-edit" ng-click="editName()" uib-tooltip="Editar o nome."
+                tooltip-placement="top" tooltip-trigger="mouseenter" type="button">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <!--Botão para remover um pacote-->
+            <button class="btn btn-remove pull-right" ng-click="removePackage()" uib-tooltip="Remover esse pacote."
+                tooltip-placement="left" tooltip-trigger="mouseenter" type="button">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </h3>
+        <div class="input-group" ng-show="editNamePackage">
+            <input type="text" class="form-control" placeholder="{{package.name}}" ng-model="editedName" ng-submit="saveName()">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="saveName()">Salvar</button>
+            </span>
+        </div> 
+        <div class="panel panel-default" ng-repeat="music in package.musics">
+            <div class="panel-body">
+                <div>
+                    <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Música" ng-model="music.name">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" uib-tooltip="Remover música ao pacote." tooltip-placement="top"
+                            tooltip-trigger="mouseenter" ng-click="removeMusic($index)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-default" uib-tooltip="Adicionar música ao pacote." tooltip-placement="top"
+                tooltip-trigger="mouseenter" ng-click="addMusic()" type="button">
+                <span class="glyphicon glyphicon-plus"></span>
+                Adicionar música
+            </button>
+        </div>
+    </div>
+</div>
+

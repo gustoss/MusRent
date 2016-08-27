@@ -4,7 +4,6 @@ module.exports = function(app){
 		bcrypt = require("bcrypt-nodejs");
 
 	var UserSchema = new Schema({
-		_id: {type: String, require: true, index: {unique: true}},
 		username: {type: String, require: true, index: {unique: true}},
 		password: {type: String, require: true, select: false},
 		idGroup: {type: Schema.Types.ObjectId, ref: "Group", require: true}

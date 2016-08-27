@@ -1,24 +1,27 @@
 <div class="panel panel-default panel-heading-bar" ng-repeat="group in groups">
     <div class="panel-heading panel-heading-bar">
-        <label>{{group.name}} - {{group.type}}</label>
-        <a href="" ng-click="goGroup(group._id)" class="pull-right link-header-bar">
-            Conhecer mais 
-            <span class="glyphicon glyphicon-arrow-right"></span>
-        </a>
+        <label>{{group.name}}</label>
+        <button href="" ng-click="goGroup(group._id)" class="pull-right btn btn-default">
+            Conhecer mais <span class="glyphicon glyphicon-arrow-right"></span>
+        </button>
     </div>
 
     <div class="panel-body">
-        <div>
-            <p><label>Eventos onde {{group.name}} toca</label></p>
-            <p ng-repeat="play in group.wherePlay"><label>{{play.place}}</label></p>
+        <div ng-if="group.description">
+            <h5>Descrição do {{group.name}}</h5>
+            <p>{{group.description}}</p>
+            <hr class="divisor">
         </div>
-        <hr class="divisor">
         <div>
-            <label>Cidades onde {{group.name}} toca</label>
-            <p ng-repeat="place in group.place"><label>{{place.city}}</label></p>
+            <h5>Preferências de eventos de {{group.name}}</h5>
+            <p ng-repeat="play in group.wherePlay">{{play.place}}</p>
+            <hr class="divisor">
         </div>
-        <hr class="divisor">
-        <div>
+        <div ng-if="group.places.length > 0">
+            <h5>Cidades que {{group.name}} atua</h5>
+            <p ng-repeat="place in group.places">{{place.city.nome}}</p>
+        </div>
+        <div ng-if="group.packages.length > 0">
             <table class="table table-striped">
                 <thead>
                     <tr>

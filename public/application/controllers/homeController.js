@@ -1,9 +1,9 @@
-app.controller("homeController", function ($scope, $rootScope, $location, groupService, $uibModal) {
+app.controller("homeController", function ($scope, $rootScope, $location, groupAPI, $uibModal) {
     //Definir o titulo da página atual
     $rootScope.title = "Home";
     $rootScope.description = "Página inicial";
 
-    groupService.getGroups()
+    groupAPI.getGroups()
     .success(function (groups) {
         $scope.groups = groups;
     })

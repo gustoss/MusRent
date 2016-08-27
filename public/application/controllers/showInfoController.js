@@ -1,8 +1,9 @@
-app.controller("showInfoController", function ($scope, $rootScope, $routeParams, groupService) {
+app.controller("showInfoController", function ($scope, $rootScope, $routeParams, groupAPI) {
     $rootScope.description = "";
 
-    groupService.getGroupRead($routeParams.id)
+    groupAPI.getGroup()
     .success(function(group){
+        console.log(group);
         $scope.group = group;
         $rootScope.description = $scope.group.name;
     })

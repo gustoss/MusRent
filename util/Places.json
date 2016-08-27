@@ -1,0 +1,12 @@
+{
+    "places": [
+        {
+            "id": 0,
+            "place": "Casamento"
+        },
+        {
+            "id": 1,
+            "place": "Aniversário"
+        }
+    ]
+}

@@ -1,17 +1,126 @@
 body
 { 
     padding-top: 70px;
-    padding-bottom: 55px;
+    padding-bottom: 150px;
+    background-color: #ffffff;
 
     border-radius: 0 !important;
 }
 
+label
+{
+    font-weight: 100;
+}
+
 /* Local onde fica o musrent */
-.logo
+.logo, .logo:focus
 {
     background-color: #337ab7;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+.logo:hover
+{
+    background-color: #609dd2;
+    color: #e6e6e6 !important;
+    cursor: pointer;
+}
+
+/* Botão da barra de navegação */
+.color-link, .color-link:focus
+{
+    color: #000000;
+    background-color: #ffffff !important;
+}
+
+.color-link:hover
+{
+    background-color: #337ab7 !important;
+    border-left: 1px solid#ffffff;
     color: #ffffff;
     cursor: pointer;
+}
+
+.nav-color
+{
+    background-color: #ffffff;
+    box-shadow: 0px 1px 8px #8f8f8f;
+}
+
+/* Lista de opções de edição do grupo */
+ul.list
+{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    list-style: none;
+}
+
+ul.list > li
+{
+    display: inline;
+}
+
+ul.list > li > a
+{
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    font-size: 14px;
+    color: #000000;
+}
+
+ul.list > li > a:focus, ul.list > li > a:hover
+{
+    text-decoration: none;
+    background-color: #337ab7;
+    color: #ffffff;
+}
+
+/* Lista de pacotes de um grupo */
+ul.pack
+{
+    padding-left: 0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    list-style: none;
+    text-align: center;
+}
+
+ul.pack > li
+{
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+ul.pack > li > a
+{
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+
+    position: relative;
+    width: 100%;
+    display: block;
+
+    font-size: 14px;
+    color: #000000;
+}
+
+ul.pack > li > a:focus, ul.pack > li > a:hover
+{
+    text-decoration: none;
+    background-color: #337ab7;
+    color: #ffffff;
+}
+
+/* Popover do login */
+.popover.bottom
+{
+    border-radius: 0;
 }
 
 /* Deixar os well com a borda em 90º */
@@ -21,21 +130,39 @@ body
     border-left-width: 0;
     border-right-width: 0;
 
-    border-bottom-width: 3px;
-    border-bottom-color: #cfc3d8;
+    border-bottom-width: 1px;
+    border-bottom-color: #000000;
 
-    border-top-width: 3px;
-    border-top-color: #cfc3d8;
+    border-top-width: 1px;
+    border-top-color: #000000;
 
-    background-color: #efebf2;
+    border-left-width: 1px;
+    border-left-color: #c9c9c9;
+
+    border-right-width: 1px;
+    border-right-color: #c9c9c9;
+
+    background-color: #ffffff;
 }
 
-/* Ajustar os form-control */
+/* Ajustar os form-control ou os inputs do app */
 .form-control
 {
     border-radius: 0;
     border-left-width: 0;
     border-right-width: 0;
+    border-color: #ffffff;
+    border-bottom-color: #c9c9c9;
+    border-top-color: #c9c9c9;
+    box-shadow: 0 0 0 0 #ffffff;
+}
+
+.form-control:focus
+{
+    border-color: #000000;
+    border-bottom-width: 1px;
+    border-top-width: 1px;
+    box-shadow: 0 0 0 0 #ffffff !important;
 }
 
 /* Ajustar o divisor */
@@ -44,9 +171,9 @@ body
     margin-top: 3px;
     margin-bottom: 3px;
 
-    height: 2px;
+    height: 1px;
 
-    background-color: #cfc3d8;
+    background-color: #f2f2f2;
 }
 
 /* Ajustar o panel */
@@ -54,9 +181,15 @@ body
 {
     margin-right: 0;
 
+    border-color: #000000;
     border-radius: 0;
-    border-left-width: 0;
-    border-right-width: 0;
+    border-left-width: 1px;
+    border-left-color: #f7f7f7;
+
+    border-right-width: 1px;
+    border-right-color: #f7f7f7;
+
+    box-shadow: 0px 1px 5px 1px #c9c9c9;
 }
 
 /* Ajustar o corpo do .panel acima */
@@ -67,10 +200,18 @@ body
 }
 
 /* Ajustar o cabeçalho do panel acima */
-.panel-heading
+.panel-default>.panel-heading
 {
     background-color: #fff !important;
     font-weight: 700;
+    border-color: #000000;
+}
+
+.panel-heading>label
+{
+    font-weight: 350;
+    font-size: 20px;
+    margin-bottom: 0px;
 }
 
 /* Ajustar o btn */
@@ -105,6 +246,34 @@ body
 {
     background-color: #f33;
     border-color: #555;
+}
+
+/* Botão de edição de nome do pacote */
+.btn-edit
+{
+    border-radius: 30px;
+    background-color: #fff;
+
+    border-width: 1px;
+    border-color: #ccc;
+
+    padding-left: 4px;
+    padding-right: 4px;
+
+    padding-bottom: 1px;
+    padding-top: 2px;
+}
+
+.btn-edit:hover
+{
+    background-color: #337ab7;
+    border-color: #555;
+}
+
+/* Botão fica com o fundo destacado para mostrar qual pacote esta sendo editado */
+.btn-focus
+{
+    background: #d7e6f4;
 }
 
 /*  Botão de help */
@@ -151,6 +320,40 @@ span.well-help
     border-radius: 0;
 }
 
+/* animação de entrar e sair de um página */
+.ng-enter
+{
+    -webkit-transition: 0.8s linear all 0.3s; /* Chrome */
+	transition: 0.8s linear all;
+	opacity: 0;
+}
+
+.ng-enter.ng-enter-active 
+{ 
+	opacity: 1;
+}
+
+.ng-leave
+{
+    -webkit-transition: 0.3s linear all; /* Chrome */
+	transition: 0.3s linear all;
+	opacity: 1;
+}
+
+.ng-leave.ng-leave-active 
+{ 
+	opacity: 0;
+}
+
+/* Rotação de 90º */
+.rotate90
+{
+    width: 19px;
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);
+}
+
 /*-----------------------------------------------------------------------------------------------------*/
 .space-margin
 {
@@ -162,36 +365,6 @@ span.well-help
 .space-top
 {
     margin-top: 25px;
-}
-
-.nav-color
-{
-    background-color: #ffffff;
-    box-shadow: 0px 1px 8px #8f8f8f;
-}
-
-.nav-btn-color
-{
-    color: #D0D0D0 !important;
-    cursor: pointer;
-}
-
-.nav-btn-color:hover
-{
-    background: #000000 !important;
-}
-
-.color-link
-{
-    color: #000000;
-}
-
-.color-link:hover
-{
-    background-color: #337ab7 !important;
-    border-left: 1px solid#ffffff;
-    color: #ffffff;
-    cursor: pointer;
 }
 
 .height-bar

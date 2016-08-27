@@ -1,8 +1,15 @@
-app.service("groupService", function ($http) {
-    //Pegar os lugares quer tocar
+angular.module("groupService", [])
+.service("groupAPI", function ($http) {
+    this.checkUser  = function (username) {
+        return $http({
+            url: "http://localhost:5000/api/v1/user/check/" + username,
+            method: "GET"
+        });
+    }
+
     this.saveGroup = function (infoGroup, user) {
         return $http({
-            url: "http://localhost:24135/api/v1/group",
+            url: "http://localhost:5000/api/v1/user",
             method: "POST",
             data: { group: infoGroup, user: user }
         });
@@ -10,46 +17,23 @@ app.service("groupService", function ($http) {
 
     this.getGroups = function () {
         return $http({
-            url: "http://localhost:24135/api/v1/group",
+            url: "http://localhost:5000/api/v1/user",
             method: "GET"
         });
     };
 
-    this.getGroupRead = function (id) {
+    this.getGroup = function (id) {
         return $http({
-            url: "http://localhost:24135/api/v1/group/" + id,
+            url: "http://localhost:5000/api/v1/user/" + id,
             method: "GET"
         });
     };
 
-    this.getGroup = function (id, token) {
+    this.update = function (infoGroup, id) {
         return $http({
-            url: "http://localhost:24135/api/v1/auth/" + id,
-            method: "GET",
-            headers: { "x-access-token": token }
-        });
-    };
-
-    this.update = function (infoGroup, id, token) {
-        return $http({
-            url: "http://localhost:24135/api/v1/auth/" + id,
+            url: "http://localhost:5000/api/v1/user/" + id,
             method: "PUT",
-            data: infoGroup,
-            headers: { "x-access-token": token }
-        });
-    };
-
-    this.getEstate = function () {
-        return $http({
-            url: "http://localhost:24135/api/v1/estate",
-            method: "GET"
-        });
-    };
-
-    this.getCity = function (id) {
-        return $http({
-            url: "http://localhost:24135/api/v1/city/" + id,
-            method: "GET"
+            data: infoGroup
         });
     };
 });
