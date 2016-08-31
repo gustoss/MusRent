@@ -1,5 +1,5 @@
 angular.module("groupService", [])
-.service("groupAPI", function ($http) {
+.service("groupAPI", function ($http, $location) {
     this.checkUser  = function (username) {
         return $http({
             url: "http://"+$location.host()+"/api/v1/user/check/" + username,
