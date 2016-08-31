@@ -13,7 +13,7 @@ angular.module("authService", [])
 .service("auth", function ($http, authToken) {
     this.login = function (user) {
         return $http({
-            url: "http://localhost:5000/api/v1/user/login/",
+            url: "http://"+$location.host()+"/api/v1/user/login/",
             method: "POST",
             data: user
         })
@@ -33,7 +33,7 @@ angular.module("authService", [])
 
     this.getUser = function () {
         return $http({
-            url: "http://localhost:5000/api/v1/user/my/group",
+            url: "http://"+$location.host()+"/api/v1/user/my/group",
             method: "GET"
         });
     }
