@@ -10,7 +10,7 @@ angular.module("authService", [])
         }
     }
 })
-.service("auth", function ($http, authToken) {
+.service("auth", function ($http, authToken, $location) {
     this.login = function (user) {
         return $http({
             url: "http://"+$location.host()+"/api/v1/user/login/",

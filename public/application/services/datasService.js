@@ -1,5 +1,5 @@
 angular.module("datasService", [])
-.service("datasAPI", function($http) {
+.service("datasAPI", function($http, $location) {
     this.getEstate = function () {
         return $http({
             url: "http://"+$location.host()+"/api/v1/datas/estate",
