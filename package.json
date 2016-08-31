@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "angular-ui-mask": "^1.8.6",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.15.1",
     "express": "~4.13.4",
     "express-load": "^1.1.15",
