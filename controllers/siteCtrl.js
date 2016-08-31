@@ -7,7 +7,8 @@ module.exports = function (app) {
 			response.sendFile(app.config.pathPublic + "/index.html");
 		},
 		getFavicon: function (request, response) {
-			response.end();
+			console.log("favicon");
+			response.sendFile(app.config.pathPublic + "/img/favicon.ico");
 		}
 	}
 	return controller;
